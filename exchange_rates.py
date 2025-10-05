@@ -1,6 +1,7 @@
 # exchange_rates.py
 # FINE3300 - Assignment 1
 # Part 2: Exchange Rates
+# Author: Luca Rao
 import csv
 
 class ExchangeRates:
