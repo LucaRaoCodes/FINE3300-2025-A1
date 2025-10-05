@@ -1,28 +1,7 @@
 # mortgage_payment.py
-# Class to calculate mortgage payments
-
-class MortgagePayment:
-    def __init__(self, principal, annual_rate, years):
-        """
-        principal: loan amount
-        annual_rate: annual interest rate (as a decimal, e.g., 0.05 for 5%)
-        years: term of mortgage in years
-        """
-        self.principal = principal
-        self.annual_rate = annual_rate
-        self.years = years
-
-    def monthly_payment(self):
-        """
-        Calculates monthly mortgage payment
-        """
-        r = self.annual_rate / 12  # monthly interest rate
-        n = self.years * 12        # total payments
-        if r == 0:
-            return self.principal / n
-        return self.principal * (r * (1 + r) ** n) / ((1 + r) ** n - 1)
-# mortgage_payment.py
-# Class to calculate mortgage payments for multiple payment options
+# FINE3300 - Assignment 1
+# Part 1: Mortgage Payments
+# Author: Luca Rao
 
 class MortgagePayment:
     def __init__(self, quoted_rate, amortization_years):
@@ -70,7 +49,20 @@ class MortgagePayment:
             round(results["acc_bi_weekly"], 2),
             round(results["acc_weekly"], 2)
         )
+
+# --- Interactive user input and formatted output ---
 if __name__ == "__main__":
-    mortgage = MortgagePayment(0.055, 25)  # 5.5% rate, 25-year amortization
-    principal = 100000
-    print(mortgage.payments(principal))
+    principal = float(input("Enter principal amount: "))
+    rate = float(input("Enter quoted annual rate (e.g., 5.5 for 5.5%): ")) / 100
+    years = int(input("Enter amortization period in years: "))
+
+    mortgage = MortgagePayment(rate, years)
+    monthly, semi_monthly, bi_weekly, weekly, acc_bi_weekly, acc_weekly = mortgage.payments(principal)
+
+    print(f"Monthly Payment: ${monthly}")
+    print(f"Semi-monthly Payment: ${semi_monthly}")
+    print(f"Bi-weekly Payment: ${bi_weekly}")
+    print(f"Weekly Payment: ${weekly}")
+    print(f"Rapid Bi-weekly Payment: ${acc_bi_weekly}")
+    print(f"Rapid Weekly Payment: ${acc_weekly}")
+
